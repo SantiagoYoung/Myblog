@@ -1,0 +1,96 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block title %}Article{% endblock %}
+
+
+
+
+
+{% block content %}
+
+    <div class="jumbotron" id="text-base" >
+        <div class="container text-center">
+            <h1>Hello.</h1>
+            <h3>&emsp;&emsp;World.</h3>
+
+        </div>
+    </div>
+
+
+
+    <div class="container">
+
+      <div class="header">
+        <h1 class="title">The  Blog  Articles</h1>
+        <p class="lead blog-description">GG</p>
+      </div>
+
+      <div class="blog-header">
+        <h1 class="blog-title">The Bootstrap Blog</h1>
+        <p class="lead blog-description">The official </p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+        {% for article in article %}
+
+          <div class="blog-post">
+            <h2 class="blog-post-title"><a href="{% url 'detail' pk=article.pk %}">{{ article.title }}</a> </h2>
+            <p class="blog-post-meta">{{ article.pubdate }} by <a href="{% url 'about' %}">{{ article.author.name }}</a></p>
+            <p> {{ article.text }} </p>
+
+          </div><!-- /.blog-post -->
+        {% endfor %}
+
+
+
+
+          <nav>
+            <ul class="pager">
+              <li><a href="#">Previous</a></li>
+              <li><a href="#">Next</a></li>
+            </ul>
+          </nav>
+
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">March 2014</a></li>
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">GitHub</a></li>
+
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <footer class="blog-footer">
+      <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p>
+        <a href="top">Back to top</a>
+      </p>
+    </footer>
+
+
+
+
+
+
+
+{% endblock %}

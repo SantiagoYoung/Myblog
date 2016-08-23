@@ -1,0 +1,58 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block title %}Edit Article{% endblock %}
+
+
+{% block content %}
+
+
+    <div class="jumbotron" id="text-base" >
+        <div class="container text-center">
+            <h1>Article</h1>
+            <h3>&emsp;&emsp;Editing.</h3>
+
+        </div>
+    </div>
+
+    <form method="POST" class="center-block">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-4">
+                {{ form.as_p }}
+                <button type="submit" class=" btn btn-default">Summit</button>
+            </div>
+        </div>
+
+
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
