@@ -10,8 +10,8 @@
 
     <div class="jumbotron" id="text-base" >
         <div class="container text-center">
-            <h1>Hello.</h1>
-            <h3>&emsp;&emsp;World.</h3>
+{#            <h1 class="title">Hello</h1>#}
+{#            <h3 class="title">&emsp;&emsp;World.</h3>#}
 
         </div>
     </div>
@@ -20,28 +20,72 @@
 
     <div class="container">
 
-      <div class="header">
-        <h1 class="title">The  Blog  Articles</h1>
-        <p class="lead blog-description">GG</p>
+      <div class="header text-center">
+{#          <div class="row">#}
+              <div class="col-md-3 col-md-offset-2">
+                  <h1 class="title">
+                      {% if user.is_authenticated %}
+                      <a href="{% url 'add' %}"><span class="glyphicon glyphicon-plus-sign"> </span></a>
+
+                      {% endif %}
+                  <div class="well">Blog  <small class="title">Article</small></div>
+
+                  </h1>
+
+{#                  <p class="lead blog-description">GG</p>#}
+              </div>
+              <div class="col-md-2 col-md-offset-4">
+
+              </div>
+          </div>
+
       </div>
 
-      <div class="blog-header">
-        <h1 class="blog-title">The Bootstrap Blog</h1>
-        <p class="lead blog-description">The official </p>
-      </div>
+{#      <div class="blog-header">#}
+{#        <h1 class="blog-title">The Bootstrap Blog</h1>#}
+{#        <p class="lead blog-description">The official </p>#}
+{#      </div>#}
 
-      <div class="row">
 
-        <div class="col-sm-8 blog-main">
 
-        {% for article in article %}
 
-          <div class="blog-post">
-            <h2 class="blog-post-title"><a href="{% url 'detail' pk=article.pk %}">{{ article.title }}</a> </h2>
-            <p class="blog-post-meta">{{ article.pubdate }} by <a href="{% url 'about' %}">{{ article.author.name }}</a></p>
-            <p> {{ article.text }} </p>
 
-          </div><!-- /.blog-post -->
+
+
+
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            {% for article in article_page %}
+            <div class="panel panel-white post panel-shadow">
+                <div class="post-heading">
+                    <div class="pull-left image">
+{#                        <img src="#" alt="user profile image">#}
+                        <span class="glyphicon glyphicon-tree-deciduous"></span>
+                    </div>
+                    <div class="pull-left meta">
+                        <div class="title h5">
+                            <h2><a href="{% url 'detail' pk=article.pk %}">{{ article.title }}</a> </h2>
+                            <a href="{% url 'about' %}"><b>{{ article.author.name }}</b></a>
+                        </div>
+                        <h6 class="text-muted time">{{ article.pubdate }}</h6>
+                    </div>
+                </div>
+            <div class="post-description">
+                    <p>{{ article.text }}</p>
+                <div class="stats">
+{#                        <a href="#" class="btn btn-default stat-item">#}
+{#                            <span class="glyphicon glyphicon-thumbs-up"></span> 2#}
+{#                        </a>#}
+{#                        <a href="#" class="btn btn-default stat-item">#}
+{#                            <span class="glyphicon glyphicon-thumbs-down"></span> 12#}
+{#                        </a>#}
+                    <a href="{% url 'detail' pk=article.pk %}">Comments:{{ article.approved_comments.count }}</a>
+
+                </div>
+            </div>
+        </div>
+
         {% endfor %}
 
 
@@ -49,14 +93,24 @@
 
           <nav>
             <ul class="pager">
-              <li><a href="#">Previous</a></li>
+                {% if article_page.has_previous %}
+              <li><a href="?page={{ article_page.previous_page_number }}">Previous</a></li>
+                {% else %}
+                <li><a href="#">Previous</a></li>
+                {% endif %}
+              <span class="current">Page {{ article_page.number }} of {{ article_page.num_page }}</span>
+
+                {% if article_page.has_next %}
+                <li><a href="?page={{ article_page.next_page_number }}">Next</a></li>
+                {% else %}
               <li><a href="#">Next</a></li>
+                {% endif %}
             </ul>
           </nav>
 
         </div><!-- /.blog-main -->
 
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <div class="col-md-3 col-md-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>About</h4>
             <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
@@ -81,10 +135,18 @@
     </div><!-- /.container -->
 
     <footer class="blog-footer">
-      <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-      <p>
-        <a href="top">Back to top</a>
-      </p>
+        <div class="col-md-4">
+            <ul class="list-unstyled">
+                <li>..........</li>
+                <li>..........</li>
+            </ul>
+        </div>
+
+        <div class="col-md-4 col-md-offset-4 text-right">
+            <a href="#text-base">Back to top</a>
+        </div>
+
+
     </footer>
 
 

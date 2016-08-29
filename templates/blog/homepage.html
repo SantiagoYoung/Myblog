@@ -10,35 +10,73 @@
 
 {% block content %}
 
-    <header class="jumbotron" id="header-base" >
-        <div class="container text-center">
-            <h1>My Blog</h1>
-            <h3>&emsp;&emsp;Change the world.</h3>
-
-        </div>
-    </header>
-
-    <div class="site-wrapper">
-
-      <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-
-          <div class="inner cover">
-            <h1 class="cover-heading">Cover your page.</h1>
-            <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-            <p class="lead">
-              <a href="#" class="btn btn-lg btn-default">Learn more</a>
-            </p>
-
-
-
-          </div>
-        </div>
-      </div>
+    <div class="jumbotron text-center" id="header-base" >
+{#        <div class="container text-center">#}
+            <h1 id="home">My Blog</h1>
+            <h3 id="home">&emsp;&emsp;Change the world.</h3>
+            <div class="btn-group" role="group" aria-label="..." id="homebtn">
+{#                <button type="button" class="btn btn-default">Left</button>#}
+{#                <button type="button" class="btn btn-default">Middle</button>#}
+{#                <button type="button" class="btn btn-default">Right</button>#}
+            </div>
+{#        </div>#}
     </div>
 
+    <section class="heart ">
+{#        <div class="container text-center">#}
+            <div class="">
+                <strong>
+                    &emsp;&emsp;那一天我二十一岁，在我
+                    一生的黄金时代，我有好多奢望。我想
+                    爱，想吃，还想在一瞬间变成天上半明半暗的云，后来我才
+                    知道，生活就是个缓慢受锤的过程，人一天天老下去，奢望也一天天
+                    消逝，最后变得像挨了锤的牛一样。可是我过二十一岁生日时没有预见到这一
+                    点。我觉得自己会永远生猛下去，什么也锤不了我。
+                </strong>
+            </div>
+{#        </div>#}
+    </section>
+
+{#    <div class="site-wrapper">#}
+{##}
+{#      <div class="site-wrapper-inner">#}
+{##}
+{#        <div class="cover-container">#}
+{##}
+{##}
+{#          <div class="inner cover">#}
+{#            <h1 class="cover-heading">Cover your page.</h1>#}
+{#            <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>#}
+{#            <p class="lead">#}
+{#              <a href="#" class="btn btn-lg btn-default">Learn more</a>#}
+{#            </p>#}
+{##}
+{##}
+{##}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+    <div class="jumbotron">
+        <div class="container">
+            <h2 class="text-center " style="color:darkgrey;">I never forget you.</h2>
+            <P></P>
+            <div class="col-md-offset-1 col-md-5">
+                <P>原来喜欢上一个人是瞬间的事，没有那么多说不清道不明的理由，一颦，一笑，一回眸，就够了。后来啊，为了忘掉那一瞬的美好，竟用尽了一生。
+对不起，还是忘不了你。</P>
+            </div>
+            <div class="col-md-5">
+                <P>因为害怕自己并非明珠而不敢刻苦琢磨，又因为有几分相信自己是明珠，而不能与瓦砾碌碌为伍，遂逐渐远离世间，疏避人群，结果在内心不断地用愤懑和羞怒饲育着自己懦弱的自尊心。世上每个人都是驯兽师，而那匹猛兽，就是每人各自的性情。对我而言，猛兽就是这自大的羞耻心了。老虎正是它。我折损自己，施苦妻儿，伤害朋友。末了，我就变成了这副与内心一致的模样。
+
+如今想起来，我真是空费了自己那一点仅有的才能，徒然在口头上卖弄着什么“人生一事不为则太长，欲为一事则太短”的警句，可事实是，唯恐暴露才华不足的卑怯的畏惧，和厌恶钻研刻苦的惰怠，就是我的全部了。但远比我缺乏才华，可由于专念磨砺而成就堂堂诗家的，也颇不乏其人。成为老虎后的今天，我才总算看到了这一点。
+                </P>
+            </div>
+        </div>
+    </div>
+
+    <section>
+
+    </section>
 
 
 
@@ -48,15 +86,27 @@
 
 
 
-    <footer class="footer container-fluid  ">
+    <footer class="footer container-fluid ">
       <div class="container ">
           <div class="row ">
               <div class="col-md-4 text-left lead">
-                  <p>Hello World.</p>
+                  <p>Neon</p>
                   <ul class="list-unstyled">
-                      <li class="foot">Email:<a></a></li>
-                      <li class="foot"></li>
+                      <li class="foot">Email:  zswforyou@gmail.com<a></a></li>
+                      <li class="foot">QQ:  739121527@qq.com</li>
                   </ul>
+              </div>
+              <div class="col-md-2  text-left lead">
+                  <p>Link</p>
+                  <ul class="list-unstyled">
+                        <li class="foot"><a class="foot-link" href="#">Github</a></li>
+                      <li class="foot"><a class="foot-link" href="#">Google</a></li>
+{#                      <li class="foot"><a class="foot-link" href="#">Github</a></li>#}
+                  </ul>
+              </div>
+
+              <div class="col-md-6">
+                            <img src="{% static 'img/ball.jpg' %}"   >
               </div>
           </div>
         <p class="text-muted">Place sticky footer content here.</p>

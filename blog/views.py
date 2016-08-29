@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from .models import *
 from django.http import HttpResponseRedirect
 from .forms import *
@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def homepage(request):
@@ -24,9 +24,21 @@ def homepage(request):
 def article(request):
     article = Article.objects.all()
 
+    paginator = Paginator(article, 3)
+
+    page = request.GET.get('page')
+
+    try:
+        article_page = paginator.page(page)
+    except PageNotAnInteger:
+        article_page = paginator.page(1)
+    except EmptyPage:
+        article_page = paginator.page(paginator.num_pages)
+
 
     content ={
-        'article': article,
+
+        'article_page': article_page,
 
 
     }
@@ -65,10 +77,10 @@ def article_detail(request, pk):
 def edit(request, pk):
     article = get_object_or_404(Article, pk=pk)
     if request.method == 'POST':
-        form = EditForm(request.POST)
+        form = EditForm(request.POST, instance=article)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(request, 'blog/article_detail.html', pk=article.pk)
+            return redirect( 'detail', pk=article.pk)
     else:
         form = EditForm(instance=article)
     return render(request, 'blog/edit.html', {'form':form})
@@ -150,3 +162,46 @@ def set_password(request):
 def log_out(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('homepage'))
+
+
+def add(request):
+    if request.method == 'POST':
+        form = EditForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('article'))
+    else:
+        form = EditForm()
+    return render(request,'blog/add.html',{'form':form})
+
+def add_comment(request,pk):
+    article = get_object_or_404(Article, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.article = article
+            comment.save()
+            return redirect('detail', pk=article.pk)
+
+    else:
+        form = CommentForm()
+    return render(request, 'blog/add_comment.html', {'form':form})
+
+@login_required
+def comment_approve(request,pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.approve()
+    return redirect('detail',pk=comment.article.pk)
+
+@login_required
+def comment_remove(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.delete()
+    return redirect('detail',pk=comment.article.pk)
+
+
+def delete(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    article.delete()
+    return redirect('article')

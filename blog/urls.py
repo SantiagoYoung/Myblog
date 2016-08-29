@@ -15,7 +15,13 @@ urlpatterns =[
     url(r'^login/$', views.login, name='login'),
     url(r'^set_password/$',views.set_password, name='set_password'),
     url(r'^log_oug/$', views.log_out, name='log_out'),
+    url(r'^add/$', views.add,name='add'),
+    url(r'^article/(?P<pk>\d+)/comment/$', views.add_comment, name='add_comment'),
+    url(r'^comment/(?P<pk>\d+)/approve/$', views.comment_approve, name='comment_approve'),
+    url(r'^comment/(?P<pk>\d+)/remove/$', views.comment_remove, name='comment_remove'),
+    url(r'^article/(?P<pk>\d+)/delete/$', views.delete, name= 'delete'),
 
 
 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+]

@@ -10,13 +10,18 @@ class EditForm(forms.ModelForm):
 
     class Meta:
         model = Article
-        fields = ('title','text','author','category',)
+        fields = ('title','text','author','category','pubdate','update',)
 
 
 # class ContactForm(forms.ModelForm):
 #     subject = forms.CharField(max_length=128)
 #     message = forms.CharField(widget=forms.Textarea)
 #     sender = forms.EmailField()
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('author', 'text',)
 
 
 

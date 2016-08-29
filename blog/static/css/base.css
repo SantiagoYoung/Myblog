@@ -1,0 +1,61 @@
+#header-base{
+    background: url(../img/man.jpg) no-repeat center fixed;
+    height: 700px;
+    margin: 0;  }
+
+#text-base{
+    background: url(../img/read.jpg) no-repeat center fixed;
+    height: 700px;
+
+}
+
+/*a,a:focus,a:hover{*/
+    /*color:#fff;*/
+/*}*/
+
+.btn-default,
+.btn-default:hover,
+.btn-default:focus{
+    color: #333;
+    text-shadow: none;
+    background-color: #fff;
+    border: 1px solid #fff;
+
+}
+#home{
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+    font-weight: 100;
+    color: ghostwhite;
+}
+
+.heart{
+
+    padding: 18px 1px 18px 1px;
+    background-color: #b2dba1;
+    color: #333333;
+}
+.footer{
+    background-color: #f7ecb5;
+    padding: 50px 2px 4px 100px;
+
+}
+
+.jumbotron{
+    margin: 0;
+}
+
+.title{
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    color: #ec971f;
+}
+#article{
+    padding-left: 40px;
+}
+
+.glyphicon-plus-sign{
+    color: #ec971f;
+}
+
+.comment{
+    margin:20px 1px 20px 20px;
+}

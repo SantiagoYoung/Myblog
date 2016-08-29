@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block title %}Add comment{% endblock %}
+
+
+
+
+
+{% block content %}
+
+    <div class="jumbotron" id="addcomment-text" >
+        <div class="container text-center">
+            <h1>Article</h1>
+            <h3>&emsp;&emsp;wondering.</h3>
+
+        </div>
+    </div>
+
+
+
+    <h1>New comment</h1>
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Send</button>
+    </form>
+{% endblock %}
