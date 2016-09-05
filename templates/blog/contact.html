@@ -14,8 +14,8 @@
 
     <div class="jumbotron" id="contact-text" >
         <div class="container text-center">
-            <h1>Do you </h1>
-            <h1>&emsp;&emsp;Know.</h1>
+{#            <h1>Do you </h1>#}
+{#            <h1>&emsp;&emsp;Know.</h1>#}
 
         </div>
     </div>
@@ -27,14 +27,39 @@
 
 
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 well">
-                <h2>&emsp;&emsp;Here is the homepage!</h2>
-                <h3 class="text-center">Email:<span class="text-info">Duanyi@hit.edu.cn</span></h3>
-            </div>
-        </div>
+<h1 class="text-center">Neon</h1>
+
+<div class="container ">
+<div class="col-md-8 col-lg-offset-2">
+    <div class="form-area">
+        <form role="form" method="POST">
+             {% csrf_token %}
+        <br style="clear:both">
+                    <h3 style="margin-bottom: 25px; text-align: center;">Communication</h3>
+    				<div class="form-group ">
+						<input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
+					</div>
+{#					<div class="form-group">#}
+{#						<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" required>#}
+{#					</div>#}<div class="form-group">
+						<input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
+					</div>
+
+                    <div class="form-group">
+                    <textarea class="form-control" name="content" id="message" placeholder="Message" maxlength="140" rows="10"></textarea>
+{#                        <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>#}
+                    </div>
+
+        <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right">Send</button>
+        </form>
     </div>
+</div>
+</div>
+
+
 
 
 

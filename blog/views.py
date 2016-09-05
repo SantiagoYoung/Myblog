@@ -7,7 +7,7 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.core.mail import send_mail
 # Create your views here.
 def homepage(request):
     article = Article.objects.all()
@@ -15,7 +15,7 @@ def homepage(request):
 
     content={
         'user':user,
-
+        'active_menu': 'homepage',
     }
 
     return  render(request, 'blog/homepage.html', content)
@@ -23,6 +23,9 @@ def homepage(request):
 
 def article(request):
     article = Article.objects.all()
+
+    category = Categoty.objects.all()
+
 
     paginator = Paginator(article, 3)
 
@@ -39,6 +42,9 @@ def article(request):
     content ={
 
         'article_page': article_page,
+        'paginator': paginator,
+        'category': category,
+        'active_menu':'articlepage',
 
 
     }
@@ -47,8 +53,31 @@ def article(request):
 
 def contact(request):
 
+    form = ContactForm()
 
-    content={}
+    if request.method =="POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = request.POST.get('name', '')
+            email = request.POST.get('email','')
+            message = request.POST.get('content','')
+            subject = request.POST.get('subject','')
+            send_mail(
+                (name, subject),
+                message,
+                email,
+                ['neon@gmail.com'],
+                fail_silently=True,
+            )
+            return redirect('contact')
+
+
+
+
+    content={
+        'active_menu': 'contactpage',
+        'form': form,
+    }
 
 
     return render(request, 'blog/contact.html', content)
@@ -59,7 +88,9 @@ def about(request):
 
 
 
-    content={}
+    content={
+        'active_menu': 'aboutpage',
+    }
 
 
     return render(request, 'blog/about.html', content)
@@ -68,9 +99,22 @@ def about(request):
 def article_detail(request, pk):
     article = get_object_or_404(Article, pk=pk)
 
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.article = article
+            comment.save()
+            return redirect('detail', pk=article.pk)
+
+    else:
+        form = CommentForm()
+
     content ={
         'article': article,
+        'form':form,
     }
+
 
     return render(request, 'blog/article_detail.html',content)
 
@@ -103,7 +147,7 @@ def signup(request):
             else:
                 new_user = User.objects.create_user(password=password,username=username,
                                                     email=request.POST.get('email',''))
-                # new_user.save()
+                new_user.save()
                 state = 'success'
     content = {
         'state':state,

@@ -27,20 +27,23 @@
                 <a href="{% url 'delete' pk=article.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
               {% endif %}
             </div>
-            <div class="col-md-6 ">
+            <div class="col-md-6 " id="article_content">
                 <p>{{ article.text }}</p>
             </div>
         </div>
 
         <hr>
-        <div class="row">
-            <div class="col-md-offset-6 col-md-4">
-            <a class="btn btn-default" href="{% url 'add_comment' pk=article.pk %}">Add comment</a>
+
+
+
+{#            <a class="btn btn-default" href="{% url 'add_comment' pk=article.pk %}">Add comment</a>#}
+
         {% for comment in article.comments.all %}
-            {% if user.is_authenticated or comment.approved_comment %}
+        {% if user.is_authenticated or comment.approved_comment %}
             <div class="comment">
-                <div class="date">
-                    {{ comment.created_date }}
+                <div class="row">
+                <div class="col-md-2 date">
+                {{ comment.created_date }}
                     {% if not comment.approved_comment %}
                         <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
                             <span class="glyphicon glyphicon-remove"></span>
@@ -49,19 +52,73 @@
                             <span class="glyphicon glyphicon-ok"></span>
                         </a>
                     {% endif %}
-                </div>
+
                 <strong>{{ comment.author }}</strong>
-                <p>{{ comment.text|linebreaks }}</p>
+                </div>
+                <div class="col-md-8">
+                <p >{{ comment.text|linebreaks }}</p>
+                </div>
+
             </div>
-            {% endif %}
+            <hr />
+        </div>
+        {% endif %}
         {% empty %}
             <p>No comments here yet.</p>
         {% endfor %}
+
+
+
+    <hr />
+
+
+
+
+
+
+
+    <div class="row">
+        <div class="col-sm-4">
+                <h3>What's wrong with you!</h3>
+            <hr>
+        <address>
+        <strong>Email:</strong> <a href="mailto:#"> neon@domain.com</a><br><br>
+        <strong>Phone:</strong> 1983
+        </address>
             </div>
+
+        <div class="col-sm-8 contact-form">
+
+        <form id="contact" method="post" class="form" role="form">
+             {% csrf_token %}
+                <div class="row">
+                <div class="col-xs-6 col-md-6 form-group">
+                <input class="form-control" id="name" name="author" placeholder="Title" type="text" required autofocus />
+            </div>
+{#        <div class="col-xs-6 col-md-6 form-group">#}
+{#            <input class="form-control" id="email" name="email" placeholder="Email" type="email" required />#}
+{#        </div>#}
+            </div>
+        <textarea class="form-control" id="message" name="text" placeholder="Text" rows="5"></textarea>
+        <br />
+        <div class="row">
+
+        <div class="col-xs-12 col-md-12 form-group">
+        <button class="btn btn-primary pull-right" type="submit">Submit</button>
         </div>
-
-
+        </div>
+        </form>
     </div>
+</div>
+
+<hr />
+
+
+</div>
+
+
+
+
 
 
 

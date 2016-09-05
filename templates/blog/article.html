@@ -22,18 +22,20 @@
 
       <div class="header text-center">
 {#          <div class="row">#}
-              <div class="col-md-3 col-md-offset-2">
+
+              <div class="col-md-3 col-md-offset-2 title">
+                  <h1>
+                  <div class="well">Blog  <small class="title">Article</small></div>
+{#                  <p class="lead blog-description">GG</p>#}
+                      </h1>
+              </div>
+          <div class="col-md-2 ">
                   <h1 class="title">
                       {% if user.is_authenticated %}
                       <a href="{% url 'add' %}"><span class="glyphicon glyphicon-plus-sign"> </span></a>
-
                       {% endif %}
-                  <div class="well">Blog  <small class="title">Article</small></div>
-
                   </h1>
-
-{#                  <p class="lead blog-description">GG</p>#}
-              </div>
+                </div>
               <div class="col-md-2 col-md-offset-4">
 
               </div>
@@ -98,7 +100,7 @@
                 {% else %}
                 <li><a href="#">Previous</a></li>
                 {% endif %}
-              <span class="current">Page {{ article_page.number }} of {{ article_page.num_page }}</span>
+              <span class="current">Page {{ article_page.number }} of {{ paginator.num_pages }}</span>
 
                 {% if article_page.has_next %}
                 <li><a href="?page={{ article_page.next_page_number }}">Next</a></li>
@@ -112,14 +114,24 @@
 
         <div class="col-md-3 col-md-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
-            <h4>About</h4>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+            <h4>Category</h4>
+
+                  <ul>
+                      {% for category in category %}
+                  <li>
+                      {{ category.category_name }}
+                  </li>
+                      {% endfor %}
+                  </ul>
+
           </div>
           <div class="sidebar-module">
+
             <h4>Archives</h4>
             <ol class="list-unstyled">
-              <li><a href="#">March 2014</a></li>
+              <li><a href="#"></a></li>
             </ol>
+
           </div>
           <div class="sidebar-module">
             <h4>Elsewhere</h4>

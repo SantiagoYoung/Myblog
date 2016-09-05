@@ -8,7 +8,14 @@
     height: 700px;
 
 }
-
+#contact-text{
+    background: url(../img/bridge.jpg) no-repeat center fixed;
+    height: 700px;
+}
+#about-text{
+    background: url(../img/youngg.jpg) no-repeat center fixed;
+    height: 800px;
+}
 /*a,a:focus,a:hover{*/
     /*color:#fff;*/
 /*}*/
@@ -58,4 +65,9 @@
 
 .comment{
     margin:20px 1px 20px 20px;
+}
+
+#article_content{
+    padding: 2px 2px 2px 2px;
+    margin: 20px 2px 2px 2px;
 }

@@ -24,4 +24,18 @@ class CommentForm(forms.ModelForm):
         fields = ('author', 'text',)
 
 
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=128, required=True)
+    email = forms.EmailField(required=True)
+    content = forms.CharField(
+        widget=forms.Textarea,
+        required=True
+    )
+    subject = forms.CharField(max_length=128, required=True)
 
+    # def __init__(self, *args, **kwargs):
+    #     super(ContactForm, self).__init__(*args, **kwargs)
+    #     self.fields['name'].label = 'Your name:'
+    #     self.fields['email'].label = 'Your email:'
+    #     self.fields['content'].label = 'Say something.'
+    #     self.fields['subject'].label = 'Subject:'
